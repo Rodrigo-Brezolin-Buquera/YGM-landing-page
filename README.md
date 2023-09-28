@@ -2,19 +2,28 @@
      Yoga Mangala - Landing page 
 </h1>
 
-##  Sobre
+##  About
 
-Landing page do estudio, contendo as informações básicas sobre o espaço. 
-Aplicação feita em Next.js
-
----
-##  Status do Projeto
-
-📥 Finalizado
+Studio landing page, containing basic information about the space.
 
 ---
+##  Status 
 
-## Acesso 
+📥 Concluded
+
+---
+
+## Technologies used
+
+- Next.js  - ChakraUI - Firebase
+- 
+---
+
+## Access
+
 <a href="https://yogamangala.com.br/">https://yogamangala.com.br/</a>
+
+
+
 
 
