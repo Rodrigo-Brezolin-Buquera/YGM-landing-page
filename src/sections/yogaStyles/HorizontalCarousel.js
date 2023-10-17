@@ -21,7 +21,7 @@ export const HorizontalCarousel = ({ children, gap }) => {
   const [multiplier, setMultiplier] = useState(0.35);
   const [activeItem, setActiveItem] = useState(0);
   const [constraint, setConstraint] = useState(0);
-  const itemWidth = 400
+  const itemWidth = 450
 
   const positions = useMemo(
     () => children.map((_, index) => -Math.abs((itemWidth + gap) * index)),

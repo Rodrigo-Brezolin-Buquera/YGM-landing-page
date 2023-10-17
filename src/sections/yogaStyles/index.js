@@ -20,7 +20,6 @@ const YogaStyles = () => {
                 flexWrap={"wrap"}
                 justifyContent={"space-evenly"}
             >
-
                 <HorizontalCarousel gap={2}>
                     {
                         stylesInfomation.map((style) =>

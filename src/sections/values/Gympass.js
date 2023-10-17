@@ -10,11 +10,8 @@ export const Gympass = () => {
             gap={"1em"}
         >
             <Heading fontSize={"2xl"} textAlign="center" color={"brand.500"}>
-                Aceitamos Gympass
+                Aceitamos Gympass e TotalPass
             </Heading>
-            <Text color={"brand.500"} textAlign="center">
-                Plano Silver ou superior
-            </Text>
         </Box>
     );
 };
