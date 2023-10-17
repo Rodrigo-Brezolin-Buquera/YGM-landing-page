@@ -1,13 +1,10 @@
-
 import React, {
-  useLayoutEffect,
   useCallback,
   useEffect,
   useState,
   useMemo,
   useRef
 } from "react";
-
 import {
   useMediaQuery,
   useTheme,
@@ -17,87 +14,14 @@ import {
   Flex,
   Box
 } from "@chakra-ui/react";
-
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 
-const debounce = (limit, callback) => {
-  let timeoutId;
-  return (...args) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(callback, limit, args);
-  };
-};
-
-function getDimensionObject(node) {
-  const rect = node.getBoundingClientRect();
-  return {
-    width: rect.width,
-    height: rect.height,
-    top: rect.top,
-    left: rect.left,
-    x: rect.x,
-    y: rect.y,
-    right: rect.right,
-    bottom: rect.bottom
-  };
-}
-
-function useBoundingRect(limit) {
-  const [dimensions, setDimensions] = useState({});
-  const [node, setNode] = useState(null);
-
-  const ref = useCallback((node) => {
-    setNode(node);
-  }, []);
-
-  useLayoutEffect(() => {
-    if ("undefined" !== typeof window && node) {
-      const measure = () =>
-        window.requestAnimationFrame(() =>
-          setDimensions(getDimensionObject(node))
-        );
-
-      measure();
-
-      const listener = debounce(limit ? limit : 100, measure);
-
-      window.addEventListener("resize", listener);
-      window.addEventListener("scroll", listener);
-      return () => {
-        window.removeEventListener("resize", listener);
-        window.removeEventListener("scroll", listener);
-      };
-    }
-  }, [node, limit]);
-
-  return [ref, dimensions, node];
-}
-
-const MotionFlex = motion(Flex);
-
-const transitionProps = {
-  stiffness: 400,
-  type: "spring",
-  damping: 60,
-  mass: 3
-};
-
-function percentage(x, y) {
-  return 100 / (y / x)
-}
-
-
 export const HorizontalCarousel = ({ children, gap }) => {
-  const [trackIsActive, setTrackIsActive] = useState(false);
   const [multiplier, setMultiplier] = useState(0.35);
   const [activeItem, setActiveItem] = useState(0);
   const [constraint, setConstraint] = useState(0);
   const itemWidth = 400
-  const sliderWidth = 400
-
 
   const positions = useMemo(
     () => children.map((_, index) => -Math.abs((itemWidth + gap) * index)),
@@ -132,35 +56,18 @@ export const HorizontalCarousel = ({ children, gap }) => {
   }, [isBetweenBaseAndMd, isBetweenMdAndXl, isGreaterThanXL, gap]);
 
   const sliderProps = {
-    setTrackIsActive,
     setActiveItem,
     activeItem,
     constraint,
-    itemWidth,
     positions,
     gap
   };
 
   const trackProps = {
-    setTrackIsActive,
-    trackIsActive,
     setActiveItem,
-    sliderWidth,
     activeItem,
     constraint,
     multiplier,
-    itemWidth,
-    positions,
-    gap
-  };
-
-  const itemProps = {
-    setTrackIsActive,
-    trackIsActive,
-    setActiveItem,
-    activeItem,
-    constraint,
-    itemWidth,
     positions,
     gap
   };
@@ -169,9 +76,9 @@ export const HorizontalCarousel = ({ children, gap }) => {
     <Slider {...sliderProps}>
       <Track {...trackProps}>
         {children.map((child, index) => (
-          <Item {...itemProps} index={index} key={index}>
+          <Flex w={`${itemWidth}px`} index={index} key={index}>
             {child}
-          </Item>
+          </Flex>
         ))}
       </Track>
     </Slider>
@@ -179,27 +86,24 @@ export const HorizontalCarousel = ({ children, gap }) => {
 };
 
 const Slider = ({
-  setTrackIsActive,
   setActiveItem,
   activeItem,
   constraint,
-  itemWidth,
   positions,
   children,
   gap
 }) => {
-  const [ref, { width }] = useBoundingRect();
 
-  const handleFocus = () => setTrackIsActive(true);
+  const percentage = (x, y) => {
+    return 100 / (y / x)
+  }
 
   const handleDecrementClick = () => {
-    setTrackIsActive(true);
     !(activeItem === positions.length - positions.length) &&
       setActiveItem((prev) => prev - 1);
   };
 
   const handleIncrementClick = () => {
-    setTrackIsActive(true);
     !(activeItem === positions.length - constraint) &&
       setActiveItem((prev) => prev + 1);
   };
@@ -207,7 +111,6 @@ const Slider = ({
   return (
     <>
       <Box
-        ref={ref}
         w={{ base: "100%", md: `calc(100% + ${gap}px)` }}
         ml={{ base: 0, md: `-${gap / 2}px` }}
         px={`${gap / 2}px`}
@@ -237,42 +140,40 @@ const Slider = ({
         {children}
       </Box>
 
-      <Flex w={`${itemWidth}px`} mt={`${gap / 2}px`} mx="auto">
+      <Flex w={`100%`} mt={`${gap / 2}px`} mx="auto">
         <Button
           onClick={handleDecrementClick}
-          onFocus={handleFocus}
           mr={`${gap / 3}px`}
           color="gray.200"
           variant="link"
           minW={0}
         >
-          <ChevronLeftIcon boxSize={9} />
+          <ChevronLeftIcon boxSize={75} />
         </Button>
 
         <Progress
           value={percentage(activeItem, positions.length - constraint)}
           alignSelf="center"
           borderRadius="2px"
-          bg="base.d100"
+          bg="base.d75"
           flex={1}
-          h="3px"
+          h="5px"
           sx={{
             "> div": {
-              backgroundColor: "gray.400"
+              backgroundColor: "brand.400"
             }
           }}
         />
 
         <Button
           onClick={handleIncrementClick}
-          onFocus={handleFocus}
           ml={`${gap / 3}px`}
           color="gray.200"
           variant="link"
           zIndex={2}
           minW={0}
         >
-          <ChevronRightIcon boxSize={9} />
+          <ChevronRightIcon boxSize={75} />
         </Button>
       </Flex>
     </>
@@ -280,13 +181,10 @@ const Slider = ({
 };
 
 const Track = ({
-  setTrackIsActive,
-  trackIsActive,
   setActiveItem,
   activeItem,
   constraint,
   multiplier,
-  itemWidth,
   positions,
   children
 }) => {
@@ -294,6 +192,14 @@ const Track = ({
   const controls = useAnimation();
   const x = useMotionValue(0);
   const node = useRef(null);
+  const MotionFlex = motion(Flex);
+
+  const transitionProps = {
+    stiffness: 400,
+    type: "spring",
+    damping: 60,
+    mass: 3
+  };
 
   const handleDragStart = () => setDragStartPosition(positions[activeItem]);
 
@@ -347,95 +253,29 @@ const Track = ({
     [activeItem, controls, positions]
   );
 
-  const handleClick = useCallback(
-    (event) =>
-      node.current.contains(event.target)
-        ? setTrackIsActive(true)
-        : setTrackIsActive(false),
-    [setTrackIsActive]
-  );
-
-  const handleKeyDown = useCallback(
-    (event) => {
-      if (trackIsActive) {
-        if (activeItem < positions.length - constraint) {
-          if (event.key === "ArrowRight" || event.key === "ArrowUp") {
-            event.preventDefault();
-            setActiveItem((prev) => prev + 1);
-          }
-        }
-        if (activeItem > positions.length - positions.length) {
-          if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
-            event.preventDefault();
-            setActiveItem((prev) => prev - 1);
-          }
-        }
-      }
-    },
-    [trackIsActive, setActiveItem, activeItem, constraint, positions.length]
-  );
 
   useEffect(() => {
     handleResize(positions);
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClick);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, [handleClick, handleResize, handleKeyDown, positions]);
+  }, [handleResize, positions]);
 
   return (
-    <>
-      {itemWidth && (
-        <VStack ref={node} spacing={5} alignItems="stretch">
-          <MotionFlex
-            dragConstraints={node}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            animate={controls}
-            style={{ x }}
-            drag="x"
-            _active={{ cursor: "grabbing" }}
-            minWidth="min-content"
-            flexWrap="nowrap"
-            cursor="grab"
-          >
-            {children}
-          </MotionFlex>
-        </VStack>
-      )}
-    </>
+    <VStack ref={node} spacing={5} alignItems="stretch">
+      <MotionFlex
+        dragConstraints={node}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        animate={controls}
+        style={{ x }}
+        drag="x"
+        _active={{ cursor: "grabbing" }}
+        minWidth="min-content"
+        flexWrap="nowrap"
+        cursor="grab"
+      >
+        {children}
+      </MotionFlex>
+    </VStack>
   );
 };
 
-const Item = ({
-  setTrackIsActive,
-  setActiveItem,
-  activeItem,
-  constraint,
-  itemWidth,
-  positions,
-  children,
-  index,
-  gap
-}) => {
-  const [userDidTab, setUserDidTab] = useState(false);
-
-
-
-  return (
-    <Flex
-
-      w={`${itemWidth}px`}
-      _notLast={{
-        mr: `${gap}px`
-      }}
-      py="4px"
-    >
-      {children}
-    </Flex>
-  );
-};
 

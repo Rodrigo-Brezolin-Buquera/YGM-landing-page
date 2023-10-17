@@ -10,7 +10,7 @@ const YogaStyles = () => {
             backgroundColor={"brand.100"}
             justifyContent={"center"}
             paddingTop={"2em"}
-            paddingBottom={"3em"}
+            paddingBottom={"1em"}
             boxShadow='xl'
         >
             <Heading color={"brand.400"} > Atividades</Heading>
@@ -19,11 +19,9 @@ const YogaStyles = () => {
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent={"space-evenly"}
-
             >
 
                 <HorizontalCarousel gap={2}>
-
                     {
                         stylesInfomation.map((style) =>
                             <StyleCard
@@ -36,7 +34,6 @@ const YogaStyles = () => {
                 </HorizontalCarousel>
             </Box>
         </SectionContainer>
-
     );
 };
 
