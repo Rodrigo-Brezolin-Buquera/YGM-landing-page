@@ -2,6 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { StyleCard } from "./StyleCard";
 import { stylesInfomation } from "./stylesInformation";
 import { SectionContainer } from "../../components/SectionContainer"
+import { HorizontalCarousel } from "./HorizontalCarousel";
 
 const YogaStyles = () => {
     return (
@@ -18,17 +19,21 @@ const YogaStyles = () => {
                 display={"flex"}
                 flexWrap={"wrap"}
                 justifyContent={"space-evenly"}
-                gap={"1em"}
-            >        
-                {
-                    stylesInfomation.map((style) =>
-                        <StyleCard
-                            key={style.title}
-                            title={style.title}
-                            text={style.text}
-                            image={style.image}
-                        />)
-                }
+
+            >
+
+                <HorizontalCarousel gap={2}>
+
+                    {
+                        stylesInfomation.map((style) =>
+                            <StyleCard
+                                key={style.title}
+                                title={style.title}
+                                text={style.text}
+                                image={style.image}
+                            />)
+                    }
+                </HorizontalCarousel>
             </Box>
         </SectionContainer>
 
