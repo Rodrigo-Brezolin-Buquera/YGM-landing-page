@@ -1,6 +1,6 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 
-export const Gympass = ({gympassPlan}) => {
+export const Gympass = () => {
     return (
         <Box
             display={"flex"}
@@ -13,7 +13,7 @@ export const Gympass = ({gympassPlan}) => {
                 Aceitamos Gympass
             </Heading>
             <Text color={"brand.500"} textAlign="center">
-                Plano {gympassPlan.plan}  ou superior
+                Plano Silver ou superior
             </Text>
         </Box>
     );

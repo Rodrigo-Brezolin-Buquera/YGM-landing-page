@@ -9,7 +9,7 @@ Studio landing page, containing basic information about the space.
 Concluded
 
 ## Technologies used
-- Next.js  - ChakraUI - Firebase
+- Next.js  - ChakraUI - Axios
   
 ## Access
 <a href="https://yogamangala.com.br/">https://yogamangala.com.br/</a>

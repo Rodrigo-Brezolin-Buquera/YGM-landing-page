@@ -1,6 +1,6 @@
 import { Heading, Text, Box } from "@chakra-ui/react";
 
-export const Personal = ({personalPlan}) => {
+export const Personal = () => {
     return (
         <Box
             display={"flex"}
@@ -16,11 +16,8 @@ export const Personal = ({personalPlan}) => {
                 Aulas particulares ou grupos fechados no estudio
             </Text>
             <Text color={"brand.500"} textAlign="center" >
-                Valor por aula: {personalPlan.price}
-            </Text>
-            <Text color={"brand.500"} textAlign="center" >
-                Pacote com 4 aulas: {personalPlan.packPrice} cada aula
-            </Text>
+               Entre em contato para consultar os valores
+            </Text>      
         </Box>
     );
 };
