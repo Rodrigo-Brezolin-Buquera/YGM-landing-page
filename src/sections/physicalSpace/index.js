@@ -4,11 +4,11 @@ import Image from "next/legacy/image";
 
 const images = [
     {
-        src: "/photos/Studio1.jpeg",
+        src: "/photos/Studio1.jpg",
         alt: "Imagem do Espaço 1"
     },
     {
-        src: "/photos/Studio2.jpeg",
+        src: "/photos/Studio2.jpg",
         alt: "Imagem do Espaço 2"
     },
 
