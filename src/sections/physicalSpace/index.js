@@ -11,25 +11,18 @@ const images = [
         src: "/photos/Studio2.jpeg",
         alt: "Imagem do Espaço 2"
     },
-    {
-        src: "/photos/Studio3.jpeg",
-        alt: "Imagem do Espaço 3"
-    },
-    {
-        src: "/photos/Studio4.jpeg",
-        alt: "Imagem do Espaço 4"
-    },
+
 ];
 
-const PhysicalSpace = ({address}) => {
+const PhysicalSpace = ({ address }) => {
     return (
         <SectionContainer
             justifyContent="space-between"
             marginY={"2em"}
             gap="3em"
         >
-            <Text fontSize={"5xl"} textAlign={"center"} color={"brand.500"} > Conheça nosso espaço</Text>
-            {/* <Box
+            <Text fontSize={"4xl"} textAlign={"center"} color={"brand.500"} > Conheça nosso espaço</Text>
+            <Box
                 display={"flex"}
                 flexWrap="wrap"
                 gap={["1em", "2em"]}
@@ -40,15 +33,18 @@ const PhysicalSpace = ({address}) => {
                     <Image
                         borderRadius={"20px"}
                         key={photo.alt}
-                        w={"360px"}
-                        h={"270px"}
+                        width={360}
+                        height={270}
                         boxShadow={"base"}
                         src={photo.src}
                         alt={photo.alt}
+                        style={{
+                            borderRadius: "10px"
+                        }}
                     />
                 ))}
 
-            </Box> */}
+            </Box>
             <Box display={"flex"} alignItems={"center"} justifyContent={"center"} margin="1em" >
                 <Image src={"/icons/MapIcon.png"} width={80} height={80} alt="ícone mapa" />
 

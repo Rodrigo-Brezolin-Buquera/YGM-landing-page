@@ -9,11 +9,6 @@ export const stylesInfomation = [
         text: "As salas são fluídas, vigorosas e dinâmicas, a prática busca sincronizar movimento com respiração com menos permanência nas posturas. Foca na coordenação, alongamento, força e concentração. As posturas se conectam de forma inteligente e espontânea criando uma experiência e purificante conhecida como Flow (Fluxo natural).",
         image: "/photos/Canva6.png" 
     }, 
-    // { 
-    //     title: "Meditação",
-    //     text: "Meditar é uma experiência, que está além das palavras, muito além do que o intelecto pode compreender. Meditar é ir além dos pensamentos condicionados e acessar nossa riqueza interna, nos tornando capaz perceber que a solução para nossos conflitos está disponível no aqui e agora. A meditação é uma ponte para sentir nossa verdadeira natureza e a felicidade plena.",
-    //     image: "/images/photos/Canva4.png"   
-    // },
     { 
         title: "Yoga Restaurativo",
         text: "Prática de maior permanência nas posturas com uso de acessórios (almofadas, blocos, mantas, cintos e cadeira), que visam proporcionar maior conforto e entrega.         Esta prática nos abre para um estado de profundo relaxamento físico, mental e emocional; aliviando a ansiedade, a tensão e o stress do dia-a-dia.",

@@ -1,7 +1,8 @@
 import { Box, CircularProgress } from "@chakra-ui/react";
 import Head from "next/head";
 import { lazy, Suspense } from "react";
-import { businessCol, findAllItems, findClasses, plansCol } from "../api";
+import { api } from "../api";
+import { classes } from "../constants/classes";
 
 const Header = lazy(() => import("../sections/header"));
 const General = lazy(() => import("../sections/general"));
@@ -14,20 +15,18 @@ const Footer = lazy(() => import("../sections/footer"));
 
 
 export async function getStaticProps() {
-  const [businessInfo] = await findAllItems(businessCol)
-  const plans = await findAllItems(plansCol)
-  const classes = await findClasses() 
+  const businessdata = await api.get("/business").catch(err => console.log(err))
+  const plansData = await api.get("/plans").catch(err => console.log(err))
 
   return {
     props: {
-      businessInfo: businessInfo,
-      plans: plans,
-      classes: classes
+      businessInfo: businessdata.data.result,
+      plans: plansData.data.result,
     },
   }
 }
 
-export default function Home({ businessInfo, plans, classes }) {
+export default function Home({ businessInfo, plans }) {
   const { address, email, facebook, instagram, phone } = businessInfo
 
   return (
