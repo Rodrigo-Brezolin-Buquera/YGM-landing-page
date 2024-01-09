@@ -15,8 +15,8 @@ const Footer = lazy(() => import("../sections/footer"));
 
 
 export async function getStaticProps() {
-  const businessdata = await api.get("/business").catch(err => console.log(err))
-  const plansData = await api.get("/plans").catch(err => console.log(err))
+  const businessdata = await api.get("/business").catch(err => console.log(err.message))
+  const plansData = await api.get("/plans").catch(err => console.log(err.message))
 
   return {
     props: {

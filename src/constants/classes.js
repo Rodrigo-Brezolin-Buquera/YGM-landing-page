@@ -8,6 +8,10 @@ export const classes = [
         time: "19:30"
     },
     {
+        day: "Quarta",
+        time: "19:00"
+    },
+    {
         day: "Quinta",
         time: "18:30"
     },
