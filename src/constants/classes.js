@@ -9,14 +9,10 @@ export const classes = [
     },
     {
         day: "Quarta",
-        time: "19:00"
-    },
-    {
-        day: "Quinta",
         time: "18:30"
     },
     {
-        day: "Quinta",
+        day: "Quarta",
         time: "19:30"
     },
     {
