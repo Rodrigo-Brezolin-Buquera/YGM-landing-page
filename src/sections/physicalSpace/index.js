@@ -5,11 +5,19 @@ import Image from "next/legacy/image";
 const images = [
     {
         src: "/photos/Studio1.jpg",
-        alt: "Imagem do Espaço 1"
+        alt: "Salão de aula"
     },
     {
         src: "/photos/Studio2.jpg",
-        alt: "Imagem do Espaço 2"
+        alt: "Frente vista da rua"
+    },
+    {
+        src: "/photos/Studio3.jpg",
+        alt: "Entrada lateral"
+    },
+    {
+        src: "/photos/Studio4.jpg",
+        alt: "Sala de espera"
     },
 
 ];

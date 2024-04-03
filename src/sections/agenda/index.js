@@ -21,7 +21,7 @@ const Agenda = ({phone, classes}) => {
             gap="1em"
             paddingTop={"1em"}
             minHeight="30em"
-            h={["70em", "70em", "30em"]}
+            h={["80em", "70em", "30em"]}
         >
             <Heading fontSize={"5xl"} color={"brand.500"} marginTop={"1em"} > Nossas Aulas </Heading>
             <Box
