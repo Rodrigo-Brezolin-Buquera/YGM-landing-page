@@ -11,8 +11,7 @@ Concluded
 ## Technologies used
 - Next.js  - ChakraUI - Axios
   
-## Access
-<a href="https://yogamangala.com.br/">https://yogamangala.com.br/</a>
+
 
 
 
